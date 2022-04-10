@@ -3,6 +3,7 @@ import 'package:talent_bank/constants.dart';
 import 'package:talent_bank/screens/authentication/components/event_button.dart';
 import 'package:talent_bank/screens/authentication/components/textinputform.dart';
 import 'package:talent_bank/size_config.dart';
+import 'package:talent_bank/screens/authentication/components/show_dialog.dart';
 
 class FindIdScreen extends StatefulWidget {
   static String routeName = '/findId';
@@ -115,7 +116,13 @@ class _FindIdScreenState extends State<FindIdScreen> {
                           ],
                         ),
                       ),
-                      Button(formKey: _formKey)
+                      EventButton(onpress: () {
+                        if (_formKey.currentState!.validate() == true) {
+                          //입력 폼에 입력한 정보 값이 일치하는 경우
+                          _formKey.currentState!.save();
+                          FlutterDialog(context, 'abc', '귀하의 아이디');
+                        }
+                      })
                     ],
                   ),
                 ),
@@ -126,68 +133,4 @@ class _FindIdScreenState extends State<FindIdScreen> {
       ),
     );
   }
-}
-
-class Button extends StatelessWidget {
-  // final Function() func;
-  const Button({
-    Key? key,
-    required GlobalKey<FormState> formKey,
-  })  : _formKey = formKey,
-        super(key: key);
-
-  final GlobalKey<FormState> _formKey;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: SizeConfig.screenHeight * 0.07,
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * 0.04),
-      child: ElevatedButton(
-        onPressed: () {
-          if (_formKey.currentState!.validate() == true) {
-            //입력 폼에 입력한 정보 값이 일치하는 경우
-            _formKey.currentState!.save();
-            FlutterDialog(context, 'abc');
-          }
-        },
-        child: Text(
-          '찾기',
-          style: TextStyle(color: Colors.black, fontSize: 30),
-        ),
-        style: ElevatedButton.styleFrom(
-            primary: kYellowColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0))),
-      ),
-    );
-  }
-}
-
-FlutterDialog(BuildContext context, String id) async {
-  showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('귀하의 아이디'),
-          content: Text('찾은 아이디 : $id'),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                '확인',
-                // style: TextStyle(
-
-                // ),
-              ),
-              // style: ElevatedButton.styleFrom(
-
-              // ),
-            )
-          ],
-        );
-      });
 }
