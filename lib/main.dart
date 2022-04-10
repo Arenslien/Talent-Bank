@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       title: '달란트 통장',
       theme: theme(),
       routes: routes,
-      initialRoute: '/home',
+      initialRoute: '/start',
     );
   }
 }
