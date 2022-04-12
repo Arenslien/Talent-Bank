@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:talent_bank/constants.dart';
+import 'package:talent_bank/screens/authentication/find_password_screen.dart';
 import 'package:talent_bank/screens/home/home_screen.dart';
 import 'package:talent_bank/screens/authentication/find_id_screen.dart';
 import 'package:talent_bank/size_config.dart';
-import 'package:talent_bank/screens/authentication/components/textinputform.dart';
+import 'package:talent_bank/screens/components//textinputform.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = '/login';
@@ -57,7 +58,7 @@ class _Login_ScreenState extends State<LoginScreen> {
           child: Center(
             child: Container(
               // 입력 폼이 존재하는 박스
-              margin: EdgeInsets.only(top: 85),
+              margin: EdgeInsets.only(top: SizeConfig.screenHeight * 0.1),
               width: SizeConfig.screenWidth * 0.78,
               height: SizeConfig.screenHeight * 0.85,
               // decoration: BoxDecoration(
@@ -81,6 +82,7 @@ class _Login_ScreenState extends State<LoginScreen> {
                             TextInputForm(
                               label: '아이디',
                               hint: '아이디를 입력하세요',
+                              enable: true,
                               obscure: false,
                               validate: (value) {
                                 if (value!.isNotEmpty) {
@@ -100,6 +102,7 @@ class _Login_ScreenState extends State<LoginScreen> {
                             TextInputForm(
                               label: '비밀번호',
                               hint: '아이디를 입력하세요',
+                              enable: true,
                               obscure: true,
                               validate: (value) {
                                 if (value!.isNotEmpty) {
@@ -129,7 +132,7 @@ class _Login_ScreenState extends State<LoginScreen> {
                                 ),
                                 FindText(
                                     label: '비밀번호 찾기',
-                                    route: FindIdScreen.routeName)
+                                    route: FindPasswordScreen.routeName)
                               ],
                             )
                           ],

@@ -5,17 +5,19 @@ class TextInputForm extends StatelessWidget {
   final String label;
   final String hint;
   final bool obscure;
+  late bool enable;
   final String? Function(String?) validate;
   final void Function(String?) onsave;
 
-  const TextInputForm({
-    Key? key,
-    required this.label,
-    required this.obscure,
-    required this.validate,
-    required this.onsave,
-    required this.hint,
-  }) : super(key: key);
+  TextInputForm(
+      {Key? key,
+      required this.label,
+      required this.obscure,
+      required this.validate,
+      required this.onsave,
+      required this.hint,
+      required this.enable})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class TextInputForm extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validate,
       onSaved: onsave,
+      enabled: enable,
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(width: 1, color: Colors.grey)),

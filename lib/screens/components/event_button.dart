@@ -4,7 +4,9 @@ import 'package:talent_bank/size_config.dart';
 
 class EventButton extends StatelessWidget {
   final void Function()? onpress;
-  const EventButton({Key? key, required this.onpress}) : super(key: key);
+  final String label;
+  const EventButton({Key? key, required this.onpress, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class EventButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onpress,
         child: Text(
-          '찾기',
+          '$label',
           style: TextStyle(color: Colors.black, fontSize: 30),
         ),
         style: ElevatedButton.styleFrom(
