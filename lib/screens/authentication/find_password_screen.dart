@@ -110,7 +110,11 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                                 if (certification == false) {
                                   if (value!.isNotEmpty) {
                                     //!!비밀번호 입력 조건이 있으면 ~하라는 함수를 추가
-                                    return null;
+                                    if (value!.contains('@')) {
+                                      return null;
+                                    } else {
+                                      return '이메일에 @를 포함시켜주세요';
+                                    }
                                   } else {
                                     return '이메일을 입력해주세요';
                                   }
